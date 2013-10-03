@@ -1,3 +1,6 @@
+Author
+==========
+"Zirkle, Andrew", zirkleac
 08_Graph_Lab
 ============
 
