@@ -1,3 +1,6 @@
+Author
+==========
+"Turner, Chace", turnerce
 08_Graph_Lab
 ============
 
