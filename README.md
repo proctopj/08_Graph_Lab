@@ -1,3 +1,6 @@
+Author
+==========
+"Bickley, Daniel", bickledb
 08_Graph_Lab
 ============
 
