@@ -1,3 +1,6 @@
+Author
+==========
+"Stilgenbauer, Kendall", stilgeki
 08_Graph_Lab
 ============
 
