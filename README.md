@@ -1,3 +1,6 @@
+Author
+==========
+"Proctor, Patrick", proctopj
 08_Graph_Lab
 ============
 
