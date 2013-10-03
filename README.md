@@ -1,3 +1,6 @@
+Author
+==========
+"Kosir, Jonathan", kosirjm
 08_Graph_Lab
 ============
 
