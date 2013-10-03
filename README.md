@@ -1,3 +1,6 @@
+Author
+==========
+"Contini, Nick", continnd
 08_Graph_Lab
 ============
 
