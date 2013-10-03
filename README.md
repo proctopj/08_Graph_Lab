@@ -1,3 +1,6 @@
+Author
+==========
+"Gardner, Daniel", gardnedn
 08_Graph_Lab
 ============
 
