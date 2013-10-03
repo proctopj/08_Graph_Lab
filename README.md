@@ -1,3 +1,6 @@
+Author
+==========
+"Harvey, Steven", harveysd
 08_Graph_Lab
 ============
 
