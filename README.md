@@ -1,3 +1,6 @@
+Author
+==========
+"Bailey, Sam", baileys2
 08_Graph_Lab
 ============
 
