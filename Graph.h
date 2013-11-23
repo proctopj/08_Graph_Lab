@@ -44,6 +44,10 @@ public:
   // If there are no such edges, then don't do anything.
   void removeEdge(int node1, int node2);
 
+  //returns the index of adjList for node1 where an Edge connecting node1
+  //and node2 exists. returns -1 if no such edge exists.
+  int edgeExists(int node1, int node2);
+
 private:
   std::vector<Node> adjList;	
 };
