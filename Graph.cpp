@@ -11,7 +11,7 @@ Graph::Graph(unsigned int numNodes){
 
 int Graph::getCost(int node1, int node2){
 	int index = edgeExists(node1, node2);
-	if(index =! -1)
+	if(index != -1)
 		return adjList[node1].edgeList[index].cost;
 	else
 		return -1;
@@ -25,10 +25,8 @@ void Graph::addEdge(int node1, int node2, double cost){
 
 	int index = edgeExists(node1, node2);           //this seems to be an elegant handling: searching one list to check existence.
 	if(index != -1){
-		adjList[node1].edgeList[index].dest = node2;
 		adjList[node1].edgeList[index].cost = cost;
 		int other = edgeExists(node2, node1);  //guaranteed a return other than -1
-		adjList[node2].edgeList[other].dest = node1;
 		adjList[node2].edgeList[other].cost = cost;
 		return;
 	}
@@ -40,7 +38,6 @@ void Graph::addEdge(int node1, int node2, double cost){
 //Remove the edge from node1 to node2, and also from node2 to node1.
 // If there are no such edges, then don't do anything.
 void Graph::removeEdge(int node1, int node2){
-  //TODO
 	if(node1 < 0 || node2 < 0 || node1 >= adjList.size() || node2 >= adjList.size())//because, on average, users are stupid...
 		return;
 	int index = edgeExists(node1, node2);
