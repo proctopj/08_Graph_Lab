@@ -50,7 +50,7 @@ public:
   //and node2 exists. returns -1 if no such edge exists.
   int edgeExists(int node1, int node2);
 
-  //implements Dijkstra's algorithm to find the shortest path and return the distance of that path.
+  //Uses a modified Dijkstra's algorithm to find the shortest path and return the distance of that path.
   double shortestPath(int node1, int node2);
 
 private:

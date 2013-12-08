@@ -73,39 +73,37 @@ double Graph::shortestPath(int node1, int node2){
 	if(node1 < 0 || node1 >= adjList.size() || node2 < 0 || node2 >= adjList.size())
 		throw std::string("You have asked for a path with a node which doesn't exist in the graph.");
 
-	int curSource = node1, numVertices = adjList.size(), numVisited = 1, *visited = new int[numVertices];
-	double accumulatedDistance = 0, *distances = new double[numVertices]; //if you want the shortest path tree, take this array and return it after
-	visited[0] = node1;													  //the algorithm runs.
+	int numVertices = adjList.size(), numVisited = 1, *visited = new int[numVertices];
+	double *distances = new double[numVertices]; //if you want the shortest path for each node, take this array and return it after
+	visited[0] = node1;							 //the algorithm runs. To get the whole tree, simply keep a "parents" array on the side
 	for(int i=0; i<numVertices; i++)
 		distances[i] = DBL_MAX; //we have to do this so there is a way to get the "shortest" path to the node by comparison.
 	distances[node1] = 0;
+	Heap<double, int> paths; //remember the priority is the distance and T is the parent and then the destination.
+	paths.add(std::make_pair(0, node1));
 
 	while(numVisited < numVertices){
-		Heap<double, int> paths; //remember the priority is the distance and T is the node # for this application.
-		int numEdges = adjList[curSource].edgeList.size();
-		for(int j=0; j<numEdges; j++){
-			Edge curEdge = adjList[curSource].edgeList[j];
-			bool isVisited = false;
-			for(int k=0; k<numVisited; k++){
-				if(curEdge.dest == visited[k]){
-					isVisited = true;
-				}
-			}//end inner for
-			if(!(isVisited)){
-				double cumulativeCost = curEdge.cost + accumulatedDistance; //this is the distance from the source to this node
-				if(cumulativeCost < distances[curEdge.dest])
-					distances[curEdge.dest] = cumulativeCost; //builds shortest path tree
-				paths.add(std::make_pair(cumulativeCost, curEdge.dest)); //cost is priority, dest is T, path is added to the PriorityQueue regardless of its
-			}															 //size
-		}//end outter for
+		std::pair<double, int> current = paths.remove();
+		int numEdges = adjList[current.second].edgeList.size();
+		for(int j=0; j<numEdges; j++){ //for each edge, relax them, toss them onto the heap (lowest priorities will bubble up on their own,
+			Edge curEdge = adjList[current.second].edgeList[j];
+			if((curEdge.cost + distances[current.second]) < distances[curEdge.dest]){
+				distances[curEdge.dest] = curEdge.cost + distances[current.second];
 
-		std::pair<double,int> newSource = paths.remove();
-		accumulatedDistance += newSource.first;
-		visited[numVisited] = newSource.second;
-		curSource = visited[numVisited]; //array access is faster than the call above
-		numVisited++;
+				bool isVisited = false;
+				for(int k=0; k<numVisited; k++){
+					if(curEdge.dest == visited[k]){
+						isVisited = true;
+						break;
+					}//end iff
+				}//end inner for
+				if(!(isVisited))
+					paths.add(std::make_pair(curEdge.cost, curEdge.dest)); //this way you don't get stuck in an infinite loop, but values are still updated.
+				else
+					numVisited++;
+			}//end outter if
+		}//end for
 	}//end while
-
 
 	return distances[node2];
 }
