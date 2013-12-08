@@ -7,7 +7,9 @@
  * using vector for both the main array and for the actual adjacency "lists"
  */
 
+#include "Heap.h"
 #include <vector>
+
 
 //The edge class has only a cost and a destination.
 class Edge{
@@ -33,7 +35,7 @@ public:
   
   //Return the cost of the edge from node1 to node2. If there
   // is no edge, return -1.
-  int getCost(int node1, int node2);
+  double getCost(int node1, int node2);
 
   //Add an edge from node1 to node2, and from node2 to node1, with
   // the given cost. If the cost is < 0, throw a string exception.
@@ -47,6 +49,9 @@ public:
   //returns the index of adjList for node1 where an Edge connecting node1
   //and node2 exists. returns -1 if no such edge exists.
   int edgeExists(int node1, int node2);
+
+  //implements Dijkstra's algorithm to find the shortest path and return the distance of that path.
+  double shortestPath(int node1, int node2);
 
 private:
   std::vector<Node> adjList;	
