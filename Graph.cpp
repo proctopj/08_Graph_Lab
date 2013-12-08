@@ -85,13 +85,13 @@ double Graph::shortestPath(int node1, int node2){
 		int numEdges = adjList[curSource].edgeList.size();
 		for(int j=0; j<numEdges; j++){
 			Edge curEdge = adjList[curSource].edgeList[j];
-			bool visited = false;
+			bool isVisited = false;
 			for(int k=0; k<numVisited; k++){
 				if(curEdge.dest == visited[k]){
-					visited = true;
+					isVisited = true;
 				}
 			}//end inner for
-			if(!(visited)){
+			if(!(isVisited)){
 				double cumulativeCost = curEdge.cost + accumulatedDistance; //this is the distance from the source to this node
 				if(cumulativeCost < distances[curEdge.dest])
 					distances[curEdge.dest] = cumulativeCost; //builds shortest path tree
