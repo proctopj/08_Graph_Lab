@@ -104,6 +104,8 @@ double Graph::shortestPath(int node1, int node2){
 			}//end outter if
 		}//end for
 	}//end while
-
-	return distances[node2];
+	paths.~Heap();
+	double toReturn = distances[node2];
+	delete[] distances; delete[] visited;
+	return toReturn;
 }
